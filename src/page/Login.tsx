@@ -1,12 +1,16 @@
 import React from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Await, useNavigate } from "react-router-dom";
+import { login } from "../api/UserApis";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     console.log("Received values of form: ", values);
+    const response = await login(values.username, values.password);
+    localStorage.setItem("access-token", response.data.token);
+    localStorage.getItem("access-token");
   };
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);

@@ -15,6 +15,8 @@ import {
   Select,
 } from "antd";
 import { useNavigate } from "react-router-dom";
+import axiosClient from "../api";
+import { addUsers } from "../api/UserApis";
 
 const { Option } = Select;
 const formItemLayout = {
@@ -44,10 +46,17 @@ const tailFormItemLayout = {
 const Register: React.FC = () => {
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+  const onFinish = async (values: any) => {
+    try {
+      const respone = await addUsers(values);
+      console.log("Received values of form: ", values);
+      await navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
   const navigate = useNavigate();
+
   return (
     <>
       <>
@@ -157,7 +166,7 @@ const Register: React.FC = () => {
           <label
             style={{ marginLeft: 20, color: "blue" }}
             onClick={() => {
-              navigate("/login");
+              navigate("/");
             }}
           >
             Or register now!

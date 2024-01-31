@@ -5,13 +5,10 @@ import Register from "../page/register";
 export const router = createBrowserRouter([
   {
     path: "/",
-  },
-  {
-    path: "/login",
     element: <Login />,
   },
   {
-    path: "/register",
+    path: "register",
     element: <Register />,
   },
 ]);
