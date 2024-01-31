@@ -1,7 +1,8 @@
 import axios from "axios";
 const axiosClient = axios.create({
-  baseURL: "https://65b74f5446324d531d543d91.mockapi.io/api/v1/user",
+  baseURL: "",
 });
+// Add a request interceptor
 axios.interceptors.request.use(
   function (config: any) {
     // Do something before request is sent
